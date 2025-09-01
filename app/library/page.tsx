@@ -34,29 +34,34 @@ export default function Page() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // for searching books
   const showSearchResults = () => {
     if (inputSearchRef.current) {
       console.log("This is the search key: ", inputSearchRef.current.value);
     }
   };
 
+  // for updating books
   const updateBooksList = async () => {
     const data: Array<string> = await getSheetData("Books", "A:C");
 
-    setlistOfBooks(() => {
-      const list = [];
-      for (let index = 0; index < data.length; index++) {
-        if (index != 0) {
-          list.push({
-            isbn: data[index][0],
-            title: data[index][1],
-            thumbnail: data[index][2],
-          })
+    setlistOfBooks(getListOfBooks(data));
+  }
+
+  // for transforming the string array into an object books
+  const getListOfBooks = (data: string[]) => {
+    const list: Book[] = [];
+    for (let index = 0; index < data.length; index++) {
+      if (index != 0) {
+        const book: Book = {
+          isbn: data[index][0],
+          title: data[index][1],
+          thumbnail: data[index][2],
         }
+        list.push(book)
       }
-      // console.log(list);
-      return list;
-    });
+    }
+    return list;
   }
 
   const getListOfCategories = async () => {
@@ -157,8 +162,8 @@ export default function Page() {
               <div className="grid md:grid-cols-6 grid-cols-2 gap-3 p-1">
                 {listOfBooks.map((book) => (
                   <Link key={book.isbn} href={"library/book"} className="w-auto h-auto rounded-md text-center flex hover: hover:ring-gray-600 hover:text-gray-200 text-gray-800 hover:bg-gray-400 hover:ring-3 focus:ring-gray-500 overflow-hidden shadow-lg justify-center items-center">
-                    <Image src={book.thumbnail} alt={book.title} width={200} height={250}/>
-                    
+                    <Image src={book.thumbnail} alt={book.title} width={200} height={250} />
+
                   </Link>
                 ))}
               </div>
