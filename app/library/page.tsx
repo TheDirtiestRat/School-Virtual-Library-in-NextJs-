@@ -14,6 +14,7 @@ export default function Page() {
   interface Book {
     isbn: string,
     title: string,
+    thumbnail: string,
   }
 
   interface Category {
@@ -39,43 +40,41 @@ export default function Page() {
   };
 
   const updateBooksList = async () => {
-    const data: any = await getSheetData("Books", "A:B");
+    const data: Array<string> = await getSheetData("Books", "A:C");
 
-    setlistOfBooks(prevList => {
+    setlistOfBooks(() => {
       const list = [];
-      for (let index = 0; index < data.sheetdata.length; index++) {
+      for (let index = 0; index < data.length; index++) {
         if (index != 0) {
           list.push({
-            isbn: data.sheetdata[index][0],
-            title: data.sheetdata[index][1],
+            isbn: data[index][0],
+            title: data[index][1],
+            thumbnail: data[index][2],
           })
         }
       }
+      // console.log(list);
       return list;
     });
-
-    // console.log(listOfBooks);
   }
 
   const getListOfCategories = async () => {
-    const data: any = await getSheetData("Categories", "A:B");
+    const data: Array<string> = await getSheetData("Categories", "A:B");
 
-    setCategories(catogories => {
+    setCategories(() => {
       const list: Category[] = [];
-      for (let index = 0; index < data.sheetdata.length; index++) {
+      for (let index = 0; index < data.length; index++) {
         if (index != 0) {
           list.push({
-            id: data.sheetdata[index][0],
-            title: data.sheetdata[index][1],
-            href: `/${data.sheetdata[index][1]}`,
+            id: data[index][0],
+            title: data[index][1],
+            href: `/${data[index][1]}`,
           })
         }
       }
       return list;
     });
   }
-
-  // const letterList = letterList;
 
   return (
     <div className="p-2 h-screen text-white">
@@ -94,11 +93,6 @@ export default function Page() {
                 {item.title}
               </Link>
             ))}
-            {/* {navItems.map((item) => (
-              <Link key={item.name} href={item.href} className="bg-gray-300 text-gray-600 hover:bg-gray-400 hover:text-gray-200 rounded-md focus:ring-4 focus:outline-none focus:ring-gray-500 p-1 basis-full flex justify-center items-center">
-                {item.name}
-              </Link>
-            ))} */}
           </div>
           <div className="basis-auto flex flex-col gap-2">
             <Link href="/" className="bg-gray-500 hover:bg-gray-300 hover:text-gray-700 rounded-md focus:ring-4 focus:outline-none focus:ring-gray-500 p-1 px-5">
@@ -136,11 +130,6 @@ export default function Page() {
                           {item.title}
                         </Link>
                       ))}
-                      {/* {navItems.map((item) => (
-                        <Link key={item.name} href={item.href} className="bg-gray-300 hover:bg-gray-200 hover:text-gray-700 rounded-md focus:ring-4 focus:outline-none focus:ring-gray-500 p-2 whitespace-nowrap">
-                          {item.name}
-                        </Link>
-                      ))} */}
                     </div>
                   </div>
                 </div>
@@ -152,7 +141,6 @@ export default function Page() {
               <div className="flex flex-row gap-2">
                 <input className="bg-gray-300 w-full text-gray-500 rounded-md focus:ring-4 focus:outline-none focus:ring-gray-500 p-2" placeholder="Search book..." type="text" id="SearchBooksBar" ref={inputSearchRef} />
                 <button className="bg-gray-300 text-gray-500 rounded-md focus:ring-4 focus:outline-none focus:ring-gray-500 p-2" onClick={showSearchResults}>Search</button>
-                <button className="bg-gray-300 text-gray-500 rounded-md focus:ring-4 focus:outline-none focus:ring-gray-500 p-2 whitespace-nowrap" onClick={updateBooksList}>Get Books Data</button>
               </div>
               {/* letter list */}
               <div className="basis-full flex flex-row justify-between gap-1 w-full overflow-x-auto pb-1 pt-1">
@@ -165,17 +153,13 @@ export default function Page() {
             {/* books */}
             <div className="basis-full overflow-y-auto h-full">
               {/* each books */}
-              <div className="flex flex-wrap gap-2 justify-evenly md:justify-start">
+              <div className="grid md:grid-cols-6 grid-cols-2 gap-3 p-1">
                 {listOfBooks.map((book) => (
-                  <Link key={book.isbn} href={"library/book"} className="w-[143] h-[207] md:w-[168] md:h-[265] bg-gray-400 rounded-md justify-center items-center text-center flex hover:bg-gray-300 hover:text-gray-600 ">
-                    {book.title}
+                  <Link key={book.isbn} href={"library/book"} className="w-auto h-auto rounded-md flex-col text-center flex hover: hover:ring-gray-600 hover:text-gray-200 text-gray-800 hover:bg-gray-400 hover:ring-3 focus:ring-gray-500 overflow-hidden shadow-lg">
+                    <img src={book.thumbnail} alt={book.title} className="w-full h-full" />
+                    <span className=" m-1">ISBN: {book.isbn}</span>
                   </Link>
                 ))}
-                {/* {booklist.map((book) => (
-                  <Link key={book.isbn} href={"library/book"} className="w-[113] h-[177] md:w-[168] md:h-[265] bg-gray-400 rounded-md justify-center items-center text-center flex hover:bg-gray-300 hover:text-gray-600 ">
-                    Book cover {book.title}
-                  </Link>
-                ))} */}
               </div>
             </div>
 

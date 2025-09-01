@@ -32,7 +32,7 @@ async function initializeSheet() {
     }
 }
 
-export async function getSheetData(book_sheet: string, range: string) {
+export async function getSheetData(book_sheet: string, range: string) : Promise<string[]> {
     try {
         const auth = await google.auth.getClient({
             projectId: keys.project_id,
@@ -64,7 +64,7 @@ export async function getSheetData(book_sheet: string, range: string) {
             )
         })
 
-        return { sheetdata: data };
+        return data;
         // console.log(sheetdata.data.values?.length);
         // return { sheetdata: sheetdata.data.values };
     } catch {
