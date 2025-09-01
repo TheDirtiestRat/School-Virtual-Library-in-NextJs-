@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { getSheetData } from "@/api/google-sheets";
 import React, { useEffect } from 'react';
 import { letterList } from "@/constant/system-const";
+import Image from 'next/image';
 
 export default function Page() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -155,9 +156,9 @@ export default function Page() {
               {/* each books */}
               <div className="grid md:grid-cols-6 grid-cols-2 gap-3 p-1">
                 {listOfBooks.map((book) => (
-                  <Link key={book.isbn} href={"library/book"} className="w-auto h-auto rounded-md flex-col text-center flex hover: hover:ring-gray-600 hover:text-gray-200 text-gray-800 hover:bg-gray-400 hover:ring-3 focus:ring-gray-500 overflow-hidden shadow-lg">
-                    <img src={book.thumbnail} alt={book.title} className="w-full h-full" />
-                    <span className=" m-1">ISBN: {book.isbn}</span>
+                  <Link key={book.isbn} href={"library/book"} className="w-auto h-auto rounded-md text-center flex hover: hover:ring-gray-600 hover:text-gray-200 text-gray-800 hover:bg-gray-400 hover:ring-3 focus:ring-gray-500 overflow-hidden shadow-lg justify-center items-center">
+                    <Image src={book.thumbnail} alt={book.title} width={200} height={250}/>
+                    
                   </Link>
                 ))}
               </div>

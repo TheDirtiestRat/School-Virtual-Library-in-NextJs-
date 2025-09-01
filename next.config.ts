@@ -2,11 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  exports : {
   images: {
-    remotePatterns: [new URL('http://books.google.com')],
+    remotePatterns: [{
+      protocol: 'http',
+      hostname: 'books.google.com',
+      pathname: '/books/content/**', 
+    },],
   },
-}
 };
 
 
