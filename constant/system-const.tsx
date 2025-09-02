@@ -1,3 +1,27 @@
+interface Category {
+    id: string,
+    title: string,
+}
+
+export const categoryList : Category[] = [
+    {
+        id: "101",
+        title: "Technology",
+    },
+    {
+        id: "102",
+        title: "Science",
+    },
+    {
+        id: "103",
+        title: "Social Sciences",
+    },
+    {
+        id: "104",
+        title: "Philosophy and Religion",
+    },
+];
+
 export const letterList = [{ index: 1, letter: "A" },
 { index: 2, letter: "B" },
 { index: 3, letter: "C" },
