@@ -18,11 +18,11 @@ export default function Page() {
                 <div className="flex lg:flex-row flex-col gap-2 h-full">
                     <div className="basis-full bg-gray-400 rounded-md p-3 lg:p-4 h-full relative">
                         <h1 className="text-2xl font-semibold">Main Developer</h1>
-                        <p className="">Mr. Dirty Rat</p>
+                        <Link href="http://github.com/TheDirtiestRat"><p className="">Mr. Dirty Rat</p></Link>
 
                         <h1 className="text-2xl font-semibold">Contributors</h1>
-                        <p className="">--</p>
-                        <p className="">--</p>
+                        <Link href="http://github.com/mjfelecio"><p className="">• mjfelecio (Mark James V. Felecio)</p></Link>
+                        <Link href="http://github.com/OfficialSage26"><p className="">• OfficialSage26 (John Ashly Gasacao)</p></Link>
 
                         <h1 className="text-2xl font-semibold absolute bottom-3 right-3"><AppTitle /></h1>
                     </div>
