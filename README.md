@@ -33,7 +33,21 @@ Install dependencies:
 npm install
 ```
 
+---
+
+## 🚀 Running the Project
+Start the development server:
+```bash
+npm run dev
+```
+Open your browser and go to http://localhost:3000 to view the app.
+
+---
+
 ## ⚙️ Configuration
+...
+
+---
 
 ## 🧑‍💻 Contributing  
 
