@@ -5,15 +5,17 @@ A school library web application built with **Next.js**. This project aims to pr
 ---
 
 ## 🚀 Features  
-...
+- Browse available books  
+- Search functionality
+- Built with **Next.js** and modern web technologies 
 
 ---
 
 ## 🛠️ Tech Stack  
-- **Framework**: ...
-- **Frontend**: ...
+- **Framework**: NextJS
+- **Frontend**: ReactJS
 - **Backend**:  ...
-- **Database**:  ...
+- **Database**:  Google Sheets (temporary)
 
 ---
 
