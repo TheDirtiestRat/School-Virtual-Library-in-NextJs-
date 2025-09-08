@@ -58,7 +58,7 @@ export default function Page() {
   }
 
   // pagination values and functions
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
   let items = listOfBooks;
   const totalPages = Math.ceil(items.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
