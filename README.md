@@ -13,7 +13,7 @@ A school library web application built with **Next.js**. This project aims to pr
 
 ## 🛠️ Tech Stack  
 - **Framework**: NextJS
-- **Frontend**: ReactJS
+- **Frontend**: ReactJS & Tailwind CSS
 - **Backend**:  ...
 - **Database**:  Google Sheets (temporary)
 
